@@ -8,6 +8,20 @@ const create = async (userToCreate) => {
     }
 }
 
+const update = async (userId, userDto) => {
+    try {
+        const options = {
+            where: {
+                id: userId
+            }
+        }
+        await User.update(userDto, options)
+        return await User.findOne(options)
+    } catch (error) {
+        throw error
+    }
+}
+
 module.exports =  {
-    create
+    create, update
 }
