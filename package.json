@@ -1,0 +1,26 @@
+{
+  "name": "reddit-notifier",
+  "version": "1.0.0",
+  "description": "A service to notify users about top voted stories on reddit",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jidesakin/reddit-notifier.git"
+  },
+  "author": "Babajide Owosakin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jidesakin/reddit-notifier/issues"
+  },
+  "homepage": "https://github.com/jidesakin/reddit-notifier#readme"
+}
