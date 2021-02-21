@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         isSubscribed: {
             type: DataTypes.BOOLEAN,
             defaultValue: true
+        },
+        notifyAt: {
+            type: DataTypes.DATE,
+            allowNull: false
         }
     })
 

@@ -7,7 +7,11 @@
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "install": "^0.13.0",
     "joi": "^17.4.0",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
+    "npm": "^7.5.4",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.5.0"
