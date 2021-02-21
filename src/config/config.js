@@ -14,8 +14,6 @@ const envVarsSchema = Joi
         DB_PASS: Joi.string().required(),
         DB_DIALECT: Joi.string().required(),
         DB_LOGGING: Joi.boolean().default(false),
-        REDDIT_SECRET_KEY: Joi.string().required(),
-        REDDIT_APP_NAME: Joi.string().required(),
     })
     .unknown(true)
 
@@ -36,10 +34,6 @@ module.exports = {
         password: envVars.DB_PASS,
         dialect: envVars.DB_DIALECT,
         logging: envVars.DB_LOGGING,
-    },
-    reddit: {
-        secretKey: envVars.REDDIT_SECRET_KEY,
-        appName: envVars.REDDIT_APP_NAME,
     }
 }
 

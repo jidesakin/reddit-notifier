@@ -1,3 +1,4 @@
+const axios = require('axios')
 const { User, Subreddit } = require('../../infrastructure/database')
 
 const addSubredditsToUser = async (userId, subreddits) => {
@@ -22,4 +23,16 @@ const addSubredditsToUser = async (userId, subreddits) => {
     }
 }
 
-module.exports = { addSubredditsToUser }
+const getTopPostsBySubreddit = async (subredditName) => {
+
+    try {
+        const result = await axios.get(`https://www.reddit.com/r/${subredditName}/top.json?limit=3&t=day`)
+        return result.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+    
+}
+
+module.exports = { addSubredditsToUser, getTopPostsBySubreddit }
