@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 app.use(router)
-db.sequelize.sync({ force: true })
+db.sequelize.sync()
 
 app.get('/', (request, response) => {
     response.json({ info: 'Node.js, Express, and Postgres API' })

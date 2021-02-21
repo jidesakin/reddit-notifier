@@ -23,9 +23,10 @@ module.exports = (sequelize, DataTypes) => {
     })
 
     User.associate = (models) => {
-        User.hasMany(models.Subreddit, {
+        User.belongsToMany(models.Subreddit, {
             foreignKey: 'userId',
-            as: 'subreddits'
+            as: 'subreddits',
+            through: 'user_subreddit'
         })
     }
     return User

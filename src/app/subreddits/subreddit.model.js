@@ -7,7 +7,11 @@ module.exports = (sequelize, DataTypes) => {
     })
 
     Subreddit.associate = (models) => {
-        Subreddit.belongsTo(models.User)
+        Subreddit.belongsToMany(models.User, {
+            as: 'users',
+            foreignKey: 'subredditId',
+            through: 'user_subreddit'
+        })
     }
 
     return Subreddit
