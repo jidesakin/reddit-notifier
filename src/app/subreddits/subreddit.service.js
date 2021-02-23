@@ -1,9 +1,11 @@
 const axios = require('axios')
 const { User, Subreddit } = require('../../infrastructure/database')
+const EventEmitter = require('../../infrastructure/events/emitter')
+
+const eventEmitter = new EventEmitter().getInstance()
 
 const addSubredditsToUser = async (userId, subreddits) => {
     try {
-        
         const user = await User.findByPk(userId)
         await Promise.all(subreddits.map(async subreddit => {
             const options = {
@@ -27,7 +29,13 @@ const getTopPostsBySubreddit = async (subredditName) => {
 
     try {
         const result = await axios.get(`https://www.reddit.com/r/${subredditName}/top.json?limit=3&t=day`)
-        return result.data
+        const topPosts = result.data.data.children.map(item => {
+            return {
+                title: item.data.title,
+                thumbnail: item.data.thumbnail
+            } 
+        }) 
+        return topPosts
     } catch (error) {
         console.log(error)
         throw error
@@ -35,4 +43,18 @@ const getTopPostsBySubreddit = async (subredditName) => {
     
 }
 
-module.exports = { addSubredditsToUser, getTopPostsBySubreddit }
+const getSubredditWithTopPosts = async (subreddits) => {
+    const data = await Promise.all(subreddits.map(async subreddit => {
+        const subredditData = subreddit.dataValues
+        const favoriteSubreddit = {
+            title: subredditData.name,
+            url: "",
+        }
+        favoriteSubreddit.posts = await getTopPostsBySubreddit(subredditData.name);
+        return favoriteSubreddit
+    }))
+
+    return data
+}
+
+module.exports = { addSubredditsToUser, getSubredditWithTopPosts }

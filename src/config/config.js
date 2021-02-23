@@ -14,6 +14,7 @@ const envVarsSchema = Joi
         DB_PASS: Joi.string().required(),
         DB_DIALECT: Joi.string().required(),
         DB_LOGGING: Joi.boolean().default(false),
+        SENDGRID_API_KEY: Joi.string().required(),
     })
     .unknown(true)
 
@@ -34,6 +35,7 @@ module.exports = {
         password: envVars.DB_PASS,
         dialect: envVars.DB_DIALECT,
         logging: envVars.DB_LOGGING,
-    }
+    },
+    sendgridApiKey: envVars.SENDGRID_API_KEY,
 }
 
