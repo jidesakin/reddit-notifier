@@ -1,8 +1,5 @@
 const axios = require('axios')
 const { User, Subreddit } = require('../../infrastructure/database')
-const EventEmitter = require('../../infrastructure/events/emitter')
-
-const eventEmitter = new EventEmitter().getInstance()
 
 const addSubredditsToUser = async (userId, subreddits) => {
     try {
@@ -45,13 +42,12 @@ const getTopPostsBySubreddit = async (subredditName) => {
 
 const getSubredditWithTopPosts = async (subreddits) => {
     const subredditsWithPosts = await Promise.all(subreddits.map(async subreddit => {
-        const subredditData = subreddit.dataValues
-        const favoriteSubreddit = {
-            title: subredditData.name,
-            url: `https://www.reddit.com/r/${subredditData.name}/top/`,
+        const subredditWithPosts = {
+            title: subreddit,
+            url: `https://www.reddit.com/r/${subreddit}/top/`,
         }
-        favoriteSubreddit.posts = await getTopPostsBySubreddit(subredditData.name);
-        return favoriteSubreddit
+        subredditWithPosts.posts = await getTopPostsBySubreddit(subreddit);
+        return subredditWithPosts
     }))
 
     return subredditsWithPosts

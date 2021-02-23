@@ -14,7 +14,8 @@ var source = fs.readFileSync(path.join(__dirname, 'templates/reddit-newsletter.h
 
 const sendNotification = async (user) => {
     const template = Handlebars.compile(source);
-    const subreddits = await SubredditService.getSubredditWithTopPosts(user.subreddits)
+    const subredditNames = user.subreddits.map(item => item.dataValues.name)
+    const subreddits = await SubredditService.getSubredditWithTopPosts(subredditNames)
 
     const htmlTemplate = template({ user,  subreddits })
     try {
