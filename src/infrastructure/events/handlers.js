@@ -3,8 +3,6 @@ const NotificationService = require('../../app/notifications/notification.servic
 
 const eventEmitter = new EventEmitter().getInstance()
 
-eventEmitter.on('SendRedditNotification', NotificationService.sendNotification)
-
 const register = () => {
     eventEmitter.on('SendRedditNotification', NotificationService.sendNotification)
 }

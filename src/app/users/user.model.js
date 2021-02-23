@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN,
             defaultValue: true
         },
+        timeZone: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         notifyAt: {
             type: DataTypes.DATE,
             allowNull: false

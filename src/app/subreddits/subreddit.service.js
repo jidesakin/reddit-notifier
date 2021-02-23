@@ -44,17 +44,17 @@ const getTopPostsBySubreddit = async (subredditName) => {
 }
 
 const getSubredditWithTopPosts = async (subreddits) => {
-    const data = await Promise.all(subreddits.map(async subreddit => {
+    const subredditsWithPosts = await Promise.all(subreddits.map(async subreddit => {
         const subredditData = subreddit.dataValues
         const favoriteSubreddit = {
             title: subredditData.name,
-            url: "",
+            url: `https://www.reddit.com/r/${subredditData.name}/top/`,
         }
         favoriteSubreddit.posts = await getTopPostsBySubreddit(subredditData.name);
         return favoriteSubreddit
     }))
 
-    return data
+    return subredditsWithPosts
 }
 
 module.exports = { addSubredditsToUser, getSubredditWithTopPosts }

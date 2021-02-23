@@ -31,12 +31,18 @@ const update = async (userId, userDto) => {
 const processNotifyUsers = async () => {
     console.log('Notify users process starts')
     const users = await User.findAll({ include: [{ model: Subreddit, as: 'subreddits', through: { attributes: []} }]})
-    await Promise.all(users.map(user => {
+    await Promise.all(users.map(async user => {
         const currentTime = moment.utc()
-        eventEmitter.emit('SendRedditNotification', user.dataValues)
+        const userData = user.dataValues
+        const notifyAtFromNowInMinutes = moment.duration(currentTime.diff(userData.notifyAt)).asMinutes() 
+        eventEmitter.emit('SendRedditNotification', userData)
+        if (notifyAtFromNowInMinutes < 2 && notifyAtFromNowInMinutes > -1 && userData.isSubscribed) {
+            eventEmitter.emit('SendRedditNotification', userData)
+        }
 
-        // if (moment.duration(currentTime.diff(user.notifyAt)).asMinutes() < 5) {
-        // }
+        let nextNotifyAt = moment.tz(userData.timeZone).add(1, 'days').hour(8).startOf('hour')
+        nextNotifyAt = moment.utc(nextNotifyAt)
+        await update(userData.id, { notifyAt: nextNotifyAt})
     }))
 }
 

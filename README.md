@@ -14,6 +14,17 @@ favorite subreddits
 - Add a copy of the `.env` to the root directory and make sure the environment variables are set correctly.
 - Run `npm start` from the root directory to start the application
 
+## Endpoints
+
+| Name | Method | Url | Sample Payload |
+|------|--------|-----|----------------|
+| Create user | POST | `/users` | ```{
+    "firstName": "John",
+    "lastName": "Doe",
+    "timeZone": "Europe/Berlin",
+    "isSubscribed": true
+}``` |
+
 ## Running tests
 
 - Run `npm test` from the root directory
