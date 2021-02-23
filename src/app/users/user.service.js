@@ -35,7 +35,6 @@ const processNotifyUsers = async () => {
         const currentTime = moment.utc()
         const userData = user.dataValues
         const notifyAtFromNowInMinutes = moment.duration(currentTime.diff(userData.notifyAt)).asMinutes() 
-        eventEmitter.emit('SendRedditNotification', userData)
         if (notifyAtFromNowInMinutes < 2 && notifyAtFromNowInMinutes > -1 && userData.isSubscribed) {
             eventEmitter.emit('SendRedditNotification', userData)
         }
