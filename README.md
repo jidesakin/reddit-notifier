@@ -12,13 +12,14 @@ favorite subreddits
 - Install the dependencies using `npm install`.
 - Ensure you have Postgress installed on you machine.
 - Add a copy of the `.env` to the root directory and make sure the environment variables are set correctly.
-- Run `npm start` to start the application
+- Run `npm start` from the root directory to start the application
 
 ## Running tests
 
-`npm test`
+- Run `npm test` from the root directory
 
 ## Next steps
 - Write more tests to cover more scenarios
 - Create database migrations and disable sequelize sync
 - Wire up the service with docker
+- Write OpenAPI spec for the endpoints
