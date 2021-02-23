@@ -12,6 +12,7 @@ favorite subreddits
 - Install the dependencies using `npm install`.
 - Ensure you have Postgress installed on you machine.
 - Add a copy of the `.env` to the root directory and make sure the environment variables are set correctly.
+- Create a database `reddit_notifier` and update the .env file with the credentials
 - Run `npm start` from the root directory to start the application
 
 ## Endpoints
