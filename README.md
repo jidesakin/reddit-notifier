@@ -23,3 +23,4 @@ favorite subreddits
 - Create database migrations and disable sequelize sync
 - Wire up the service with docker
 - Write OpenAPI spec for the endpoints
+- Improve logging
