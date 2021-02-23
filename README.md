@@ -18,13 +18,9 @@ favorite subreddits
 
 | Name | Method | Url | Sample Payload |
 |------|--------|-----|----------------|
-| Create user | POST | `/users` | ```{
-    "firstName": "John",
-    "lastName": "Doe",
-    "timeZone": "Europe/Berlin",
-    "isSubscribed": true
-}``` |
-
+| Create user | POST | `/users` | <pre lang="json"> {"firstName": "John", "lastName": "Doe", "timeZone": "Europe/Berlin", "isSubscribed": true} </pre>  |
+|Update user | PUT | `/users` | <pre lang="json"> {"firstName": "John", "lastName": "Doe", "timeZone": "Europe/Berlin", "isSubscribed": true} </pre> |
+| Add subreddits to user| POST | `/users/{id}/subreddits` | <pre lang="json"> {"subreddits": ["Tech", "Politics", "Memes"]} </pre> |
 ## Running tests
 
 - Run `npm test` from the root directory
